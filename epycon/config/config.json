@@ -1,0 +1,46 @@
+{  
+  "paths": {
+    "input_folder": "",
+    "output_folder": "",
+    "studies": [
+
+    ]
+  },
+
+  "data": {
+    "output_format": "h5",    
+    "pin_entries": true,
+    "leads": "original",
+    "data_files": [
+
+    ],
+    "channels": [
+      
+    ],
+    "custom_channels": {
+
+    }
+  },
+
+  "entries": {
+    "convert": true,
+    "output_format": "sel",
+    "summary_csv": true,
+    "filter_annotation_type": [
+
+    ]
+  },
+
+  "global_settings": {
+    "workmate_version": "4.2",
+    "pseudonymize": false,
+    "processing": {
+      "chunk_size": 1024000
+    },
+    "credentials": {
+      "author": "mymail@mailbox.com",
+      "device": "Abbott WorkMate 4.2",
+      "owner": "Your Institution"
+    }
+  }
+}
