@@ -1,0 +1,129 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "paths": {
+        "type": "object",
+        "required": ["input_folder", "output_folder"],
+        "properties": {
+          "input_folder": {
+            "type": "string",
+            "description": "Path to the folder containing the WorkMate studies."
+          },
+          "output_folder": {
+            "type": "string",
+            "description": "Path to the folder where the converted data will be saved."
+          },
+          "studies": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Names of the studies to be processed."
+            }
+          }
+        }
+      },
+      "data": {
+        "type": "object",
+        "required": ["output_format", "pin_entries", "leads"],
+        "properties": {
+          "output_format": {
+            "type": "string",
+            "enum": ["csv", "h5"],
+            "description": "Format of the output files."
+          },
+          "pin_entries": {
+            "type": "boolean",
+            "description": "Whether to include entries/annotation directly in the output files. Only valid for HDF5."
+          },
+          "leads": {
+            "type": "string",
+            "enum": ["computed", "original"],
+            "description": "Method for computing leads: computed - all channels will be exported as defined in the WorkMate; original - original unipolar channels only."
+          },
+          "data_files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "List of data files to be processed."
+            }
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "List of channels to include in the output files."
+            }
+          }
+        }
+      },
+      "entries": {
+        "type": "object",
+        "required": ["convert", "output_format", "summary_csv"],
+        "properties": {
+          "convert": {
+            "type": "boolean",
+            "description": "Whether to convert the specified entries."
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["csv", "sel"],
+            "description": "Format of the output files. Sel file for compatibility with Signal Plant"
+          },
+          "summary_csv": {
+            "type": "boolean",
+            "description": "Whether to output all entries in a single file. Otherwise separate file for each data file is created."
+          },
+          "filter_annotation_type": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "List of annotation types to filter for conversion."
+            }
+          }
+        }
+      },
+      "global_settings": {
+        "type": "object",
+        "required": ["workmate_version"],
+        "properties": {
+          "workmate_version": {
+            "type": "string",
+            "enum": ["4.1", "4.2", "4.3"],
+            "description": "Version of the WorkMate device used for data acquisition."
+          },
+          "pseudonymize": {
+            "type": "boolean",
+            "description": "Whether to pseudonymize patient identifiers."
+          },
+          "processing": {
+            "type": "object",
+            "properties": {
+              "chunk_size": {
+                "type": ["integer", "null"],
+                "description": "Size of data chunk used during conversion in KB"
+              }
+            }
+          },
+          "credentials": {
+            "type": "object",
+            "properties": {
+              "author": {
+                "type": "string",
+                "format": "email",
+                "description": "Email address of the person who processed the data."
+              },
+              "device": {
+                "type": "string",
+                "description": "Model and version of the device used for data acquisition."
+              },
+              "owner": {
+                "type": "string",
+                "description": "Name of the institution owning the data."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
